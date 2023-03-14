@@ -33,10 +33,10 @@ namespace RegistrationAPI.Models.Validators
                 .Length(11).WithMessage("Incorrect Personal Id Number")
                 .Custom((value, context) =>
                 {
-                    if (value != null && value.All(char.IsDigit))
+                    if (value.Length == 11 && value != null && value.All(char.IsDigit))
                     {
                         int sum = 0;
-                        int temp;
+                        int temp = 0;
                         for (int i = 0; i < weights.Length; i++)
                         {
                             temp = weights[i] * int.Parse(value[i].ToString());
@@ -72,15 +72,7 @@ namespace RegistrationAPI.Models.Validators
                 .MinimumLength(7).WithMessage("Phone number is too short");
 
             RuleFor(dto => dto.AveragePowerConsumption)
-                .ScalePrecision(3, 8, false).WithMessage("Incorrect average power consumption")
-                .Custom((value, context) =>
-                {
-                    if(value != null)
-                    {
-                        if(value.ToString().Contains(","))
-                            context.AddFailure("test");
-                    }
-                });
+                .ScalePrecision(3, 8, false).WithMessage("Incorrect average power consumption");
 
             RuleFor(dto => dto.DateOfBirth).LessThan(DateTime.Now).WithMessage("Incorrect date of birth");
         }
