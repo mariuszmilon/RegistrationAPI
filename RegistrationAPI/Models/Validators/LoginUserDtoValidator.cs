@@ -6,10 +6,12 @@ namespace RegistrationAPI.Models.Validators
     {
         public LoginUserDtoValidator()
         {
-            RuleFor(dto => dto.Email).NotEmpty().NotNull().WithMessage("Email is required")
+            RuleFor(dto => dto.Email).NotEmpty().WithMessage("Email is required")
+                .NotNull().WithMessage("Email is required")
                 .EmailAddress().WithMessage("Incorrect Email");
 
-            RuleFor(dto => dto.Password).NotEmpty().NotNull().WithMessage("Password is required");
+            RuleFor(dto => dto.Password).NotEmpty().WithMessage("Password is required")
+                .NotNull().WithMessage("Password is required");
         }
     }
 }

@@ -16,7 +16,7 @@ namespace RegistrationAPI.Services
         }
         public async Task<List<UserDto>> GetUsersAsync()
         {
-            var users =  await _dbContext.Users.ToListAsync();
+            var users =  await _dbContext.Users.AsNoTracking().ToListAsync();
             return _mapper.Map<List<UserDto>>(users);
         }
     }

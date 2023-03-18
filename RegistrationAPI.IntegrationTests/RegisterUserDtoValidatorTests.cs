@@ -186,7 +186,7 @@ namespace RegistrationAPI.IntegrationTests
             var result = validator.TestValidate(dto);
 
             // assert
-            result.ShouldHaveValidationErrorFor("ConfirmedPassword");
+            result.ShouldHaveValidationErrorFor("ConfirmPassword");
         }
 
         [Theory]

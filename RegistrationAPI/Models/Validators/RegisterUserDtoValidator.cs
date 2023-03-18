@@ -62,7 +62,8 @@ namespace RegistrationAPI.Models.Validators
                 .Matches(@"[0-9]+").WithMessage("Your password must contain at least one number")
                 .Matches(@"[][""!@$%^&*(){}:;<>,.?/+_=|'~\\-]").WithMessage("Your password must contain a special character");
 
-            RuleFor(dto => dto.ConfirmPassword).NotEmpty().NotNull().WithMessage("Confirmed password is required")
+            RuleFor(dto => dto.ConfirmPassword).NotEmpty().WithMessage("Confirmed password is required")
+                .NotNull().WithMessage("Confirmed password is required")
                 .Equal(cp => cp.Password).WithMessage("Passwords do not match");
 
             RuleFor(dto => dto.PhoneNumber).NotEmpty().WithMessage("Phone number is required")
@@ -72,7 +73,7 @@ namespace RegistrationAPI.Models.Validators
                 .MinimumLength(7).WithMessage("Phone number is too short");
 
             RuleFor(dto => dto.AveragePowerConsumption)
-                .ScalePrecision(3, 8, false).WithMessage("Incorrect average power consumption");
+                .ScalePrecision(3, 8, false).WithMessage("‘AveragePowerConsumption’ must not be more than 8 digits in total, with allowance for 3 decimals.");
 
             RuleFor(dto => dto.DateOfBirth).LessThan(DateTime.Now).WithMessage("Incorrect date of birth");
         }

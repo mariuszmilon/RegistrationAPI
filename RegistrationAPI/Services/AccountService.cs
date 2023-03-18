@@ -46,7 +46,6 @@ namespace RegistrationAPI.Services
             var authProperties = new AuthenticationProperties
             {
                 AllowRefresh = true,
-                ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(5),
                 IsPersistent = true,
             };
 
