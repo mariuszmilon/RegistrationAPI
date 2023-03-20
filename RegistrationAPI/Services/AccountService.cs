@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RegistrationAPI.Entities;
 using RegistrationAPI.Exepctions;
-using RegistrationAPI.Models;
+using RegistrationAPI.Models.Account;
+using RegistrationAPI.Models.User;
 using System.Security.Claims;
 
 namespace RegistrationAPI.Services

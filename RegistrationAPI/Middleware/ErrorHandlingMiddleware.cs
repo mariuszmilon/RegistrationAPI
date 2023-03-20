@@ -25,6 +25,8 @@ namespace RegistrationAPI.Middleware
             }
             catch
             {
+                _logger.LogError("Undefined exception");
+
                 context.Response.StatusCode = 500;
                 await context.Response.WriteAsync("Internal Server Error");
             }

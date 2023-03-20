@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RegistrationAPI.Models.NewFolder;
 using RegistrationAPI.Services;
 
 namespace RegistrationAPI.Controllers
@@ -17,9 +18,9 @@ namespace RegistrationAPI.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> GetUsersAsync()
+        public async Task<IActionResult> GetUsersAsync([FromQuery] PaginationQuery query)
         {
-            return Ok(await _userService.GetUsersAsync());
+            return Ok(await _userService.GetUsersAsync(query));
         }
     }
 }

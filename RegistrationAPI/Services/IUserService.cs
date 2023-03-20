@@ -1,9 +1,10 @@
-﻿using RegistrationAPI.Models;
+﻿using RegistrationAPI.Models.NewFolder;
+using RegistrationAPI.Models.User;
 
 namespace RegistrationAPI.Services
 {
     public interface IUserService
     {
-        Task<List<UserDto>> GetUsersAsync();
+        Task<PaginationResult<UserDto>> GetUsersAsync(PaginationQuery query);
     }
 }

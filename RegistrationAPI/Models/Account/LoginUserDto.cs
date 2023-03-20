@@ -1,4 +1,4 @@
-﻿namespace RegistrationAPI.Models
+﻿namespace RegistrationAPI.Models.Account
 {
     public class LoginUserDto
     {

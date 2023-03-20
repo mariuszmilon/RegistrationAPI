@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RegistrationAPI.Models;
+using RegistrationAPI.Models.Account;
 using RegistrationAPI.Services;
 
 

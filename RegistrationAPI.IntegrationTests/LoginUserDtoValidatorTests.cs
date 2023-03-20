@@ -1,5 +1,5 @@
 ﻿using FluentValidation.TestHelper;
-using RegistrationAPI.Models;
+using RegistrationAPI.Models.Account;
 using RegistrationAPI.Models.Validators;
 
 namespace RegistrationAPI.IntegrationTests

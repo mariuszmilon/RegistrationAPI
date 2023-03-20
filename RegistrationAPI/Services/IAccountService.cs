@@ -1,4 +1,5 @@
-﻿using RegistrationAPI.Models;
+﻿using RegistrationAPI.Models.Account;
+using RegistrationAPI.Models.User;
 
 namespace RegistrationAPI.Services
 {

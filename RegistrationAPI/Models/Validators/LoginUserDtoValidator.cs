@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using RegistrationAPI.Models.Account;
 
 namespace RegistrationAPI.Models.Validators
 {

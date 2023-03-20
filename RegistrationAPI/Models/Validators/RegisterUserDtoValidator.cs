@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using RegistrationAPI.Entities;
-using System.Runtime.InteropServices;
+using RegistrationAPI.Models.Account;
 using System.Text.RegularExpressions;
 
 namespace RegistrationAPI.Models.Validators
@@ -24,13 +24,13 @@ namespace RegistrationAPI.Models.Validators
                     var emailInDb = dbContext.Users.Any(u => u.Email == value);
                     if(emailInDb)
                     {
-                        context.AddFailure("That email is already taken");
+                        context.AddFailure("This email is already taken");
                     }
                 });
 
-            RuleFor(dto => dto.PersonalIdNumber).NotEmpty().WithMessage("Personal id number is required")
-                .NotNull().WithMessage("Personal id number is required")
-                .Length(11).WithMessage("Incorrect Personal Id Number")
+            RuleFor(dto => dto.PersonalIdNumber).NotEmpty().WithMessage("Personal identification number is required")
+                .NotNull().WithMessage("Personal identification number is required")
+                .Length(11).WithMessage("Incorrect personal identification Number")
                 .Custom((value, context) =>
                 {
                     if (value.Length == 11 && value != null && value.All(char.IsDigit))
@@ -48,15 +48,15 @@ namespace RegistrationAPI.Models.Validators
                             sum = sum % 10;
                         var controlSum = 10 - sum;
                         if (value.Last().ToString() != controlSum.ToString())
-                            context.AddFailure("Incorrect Personal Id Number");
+                            context.AddFailure("Incorrect personal identification number");
                     }
                     else
-                        context.AddFailure("Incorrect Personal Id Number");
+                        context.AddFailure("Incorrect personal identification number");
                 });
 
             RuleFor(dto => dto.Password).NotEmpty().WithMessage("Password is required")
                 .NotNull().WithMessage("Password is required")
-                .MinimumLength(8).WithMessage("The password is too short")
+                .MinimumLength(8).WithMessage("Page size must be greather than or equal to 8")
                 .Matches(@"[A-Z]+").WithMessage("Your password must contain at least one uppercase letter")
                 .Matches(@"[a-z]+").WithMessage("Your password must contain at least one lowercase letter")
                 .Matches(@"[0-9]+").WithMessage("Your password must contain at least one number")
@@ -69,11 +69,11 @@ namespace RegistrationAPI.Models.Validators
             RuleFor(dto => dto.PhoneNumber).NotEmpty().WithMessage("Phone number is required")
                 .NotNull().WithMessage("Phone number is required")
                 .Matches(new Regex("^\\+?[1-9][0-9\\s.-]{7,11}$")).WithMessage("Invalid phone number")
-                .MaximumLength(16).WithMessage("Phone number is too long")
-                .MinimumLength(7).WithMessage("Phone number is too short");
+                .MaximumLength(16).WithMessage("Invalid phone number")
+                .MinimumLength(7).WithMessage("Invalid phone number");
 
             RuleFor(dto => dto.AveragePowerConsumption)
-                .ScalePrecision(3, 8, false).WithMessage("‘AveragePowerConsumption’ must not be more than 8 digits in total, with allowance for 3 decimals.");
+                .ScalePrecision(3, 8, false).WithMessage("‘AveragePowerConsumption’ must not be more than 8 digits in total, with allowance for 3 decimals");
 
             RuleFor(dto => dto.DateOfBirth).LessThan(DateTime.Now).WithMessage("Incorrect date of birth");
         }

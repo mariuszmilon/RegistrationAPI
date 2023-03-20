@@ -2,7 +2,7 @@
 using FluentValidation.TestHelper;
 using Microsoft.EntityFrameworkCore;
 using RegistrationAPI.Entities;
-using RegistrationAPI.Models;
+using RegistrationAPI.Models.Account;
 using RegistrationAPI.Models.Validators;
 
 namespace RegistrationAPI.IntegrationTests
