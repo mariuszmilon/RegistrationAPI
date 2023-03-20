@@ -13,7 +13,7 @@ namespace RegistrationAPI.IntegrationTests
         public RegisterUserDtoValidatorTests()
         {
             var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
-            builder.UseInMemoryDatabase("TestingDb");
+            builder.UseInMemoryDatabase("TestDb");
             _dbContext = new ApplicationDbContext(builder.Options);
             SeedUser();
         }

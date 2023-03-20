@@ -24,16 +24,16 @@ namespace RegistrationAPI.Models.Validators
                     var emailInDb = dbContext.Users.Any(u => u.Email == value);
                     if(emailInDb)
                     {
-                        context.AddFailure("This email is already taken");
+                        context.AddFailure("This email has already been taken");
                     }
                 });
 
             RuleFor(dto => dto.PersonalIdNumber).NotEmpty().WithMessage("Personal identification number is required")
                 .NotNull().WithMessage("Personal identification number is required")
-                .Length(11).WithMessage("Incorrect personal identification Number")
+                .Length(11).WithMessage("Personal identification number should contain 11 digits")
                 .Custom((value, context) =>
                 {
-                    if (value.Length == 11 && value != null && value.All(char.IsDigit))
+                    if (value != null && value.Length == 11 &&  value.All(char.IsDigit))
                     {
                         int sum = 0;
                         int temp = 0;
@@ -56,7 +56,7 @@ namespace RegistrationAPI.Models.Validators
 
             RuleFor(dto => dto.Password).NotEmpty().WithMessage("Password is required")
                 .NotNull().WithMessage("Password is required")
-                .MinimumLength(8).WithMessage("Page size must be greather than or equal to 8")
+                .MinimumLength(8).WithMessage("Password must contain at least 8 characters")
                 .Matches(@"[A-Z]+").WithMessage("Your password must contain at least one uppercase letter")
                 .Matches(@"[a-z]+").WithMessage("Your password must contain at least one lowercase letter")
                 .Matches(@"[0-9]+").WithMessage("Your password must contain at least one number")
